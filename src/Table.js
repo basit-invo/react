@@ -1,7 +1,8 @@
-import React from 'react'
-import { useTable } from 'react-table'
+import React,{useState} from 'react'
+import { useTable,useFilters } from 'react-table'
  
  function Table() {
+ 
    const data = React.useMemo(
      () => [
        {
@@ -34,15 +35,32 @@ import { useTable } from 'react-table'
      []
    )
  
+       // Create a state
+const [filterInput, setFilterInput] = useState("");
+
+const handleFilterChange = e => {
+    const value = e.target.value || undefined;
+    setFilter("col1", value); 
+    setFilterInput(value);
+  };
+
    const {
      getTableProps,
      getTableBodyProps,
      headerGroups,
      rows,
      prepareRow,
-   } = useTable({ columns, data })
+     setFilter
+   } = useTable({ columns, data },useFilters);
  
    return (
+       <div>
+    <input
+    value={filterInput}
+    onChange={handleFilterChange}
+    placeholder={"Search name"}
+  />
+  
      <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
        <thead>
          {headerGroups.map((headerGroup, i) => (
@@ -87,6 +105,7 @@ import { useTable } from 'react-table'
          })}
        </tbody>
      </table>
+     </div>
    )
  }
 
