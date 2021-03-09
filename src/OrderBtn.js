@@ -1,7 +1,7 @@
 // import React,{useRef} from 'react';
 
 // function TextInputWithFocusButton() {
-    
+
 //     const inputEl = useRef(null);
 //     const onButtonClick = () => {
 //       // `current` points to the mounted text input element
@@ -16,7 +16,7 @@
 //   }
 //   export default TextInputWithFocusButton;
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 const GoodCounter = () => {
   const count = useRef(0);
   let currentCount = count.current;
