@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Logo from './logo.svg';
 import { Link } from 'react-router-dom';
 
-function Header() {
+function Header({ user, logout }) {
   return (
     <div className="bg-black w-full text-white">
       <div className="max-w-screen-xl m-auto overflow-hidden block">
@@ -18,12 +19,26 @@ function Header() {
           </Link>
         </div>
         <div className="w-1/4 float-left mt-5">
-          <Link to="/login" className="mr-5">
-            Login
-          </Link>
-          <Link to="/register" className="mr-5">
-            Register
-          </Link>
+          {user == true && (
+            <span>
+              {/* <Link to="/reset" className="mr-5">
+                Change Password
+              </Link> */}
+              <button type="button" onClick={logout}>
+                Logout
+              </button>
+            </span>
+          )}
+          {user == false && (
+            <span>
+              <Link to="/login" className="mr-5">
+                Login
+              </Link>
+              <Link to="/register" className="mr-5">
+                Register
+              </Link>
+            </span>
+          )}
         </div>
       </div>
     </div>

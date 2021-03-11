@@ -13,4 +13,4 @@ const firebaseApp = firebase.initializeApp({
 const db = firebaseApp.firestore();
 const storage = firebase.storage();
 
-export { storage, firebase, db as default };
+export { storage, db as default };

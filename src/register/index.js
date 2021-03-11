@@ -78,7 +78,6 @@ const IndexPage = () => {
         db.collection('users')
           .add(data)
           .then(() => {
-            alert('data added!!!');
             completeFormStep();
           });
         console.log('success');

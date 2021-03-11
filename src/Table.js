@@ -5,16 +5,16 @@ function Table() {
   const data = React.useMemo(
     () => [
       {
-        col1: 'Hello',
-        col2: 'World',
+        col1: 'Pizza + Coke',
+        col2: '1123 Rs.',
       },
       {
-        col1: 'react-table',
-        col2: 'rocks',
+        col1: 'Burger + Coke',
+        col2: '1123 Rs.',
       },
       {
-        col1: 'whatever',
-        col2: 'you want',
+        col1: 'wrap + Coke',
+        col2: '1123 Rs.',
       },
     ],
     []
@@ -23,11 +23,11 @@ function Table() {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'Column 1',
+        Header: 'Deals',
         accessor: 'col1', // accessor is the "key" in the data
       },
       {
-        Header: 'Column 2',
+        Header: 'Price',
         accessor: 'col2',
       },
     ],
@@ -53,59 +53,65 @@ function Table() {
   } = useTable({ columns, data }, useFilters);
 
   return (
-    <div>
-      <input
-        value={filterInput}
-        onChange={handleFilterChange}
-        placeholder={'Search name'}
-      />
-
-      <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
-        <thead>
-          {headerGroups.map((headerGroup, i) => (
-            <tr key={i} {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th
-                  key={i}
-                  {...column.getHeaderProps()}
-                  style={{
-                    borderBottom: 'solid 3px red',
-                    background: 'aliceblue',
-                    color: 'black',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  {column.render('Header')}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
-            prepareRow(row);
-            return (
-              <tr key={i} {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <td
-                      key={i}
-                      {...cell.getCellProps()}
-                      style={{
-                        padding: '10px',
-                        border: 'solid 1px gray',
-                        background: 'papayawhip',
-                      }}
-                    >
-                      {cell.render('Cell')}
-                    </td>
-                  );
-                })}
+    <div className="max-w-screen-xl m-auto grid grid-cols-3 gap-4 mt-10">
+      <div className="p-5 text-left">
+        <input
+          value={filterInput}
+          onChange={handleFilterChange}
+          placeholder={'Search name'}
+          className="mb-3 px-3"
+        />
+        <table
+          {...getTableProps()}
+          className="w-full"
+          style={{ border: 'solid 1px blue' }}
+        >
+          <thead>
+            {headerGroups.map((headerGroup, i) => (
+              <tr key={i} {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th
+                    key={i}
+                    {...column.getHeaderProps()}
+                    style={{
+                      borderBottom: 'solid 3px red',
+                      background: 'aliceblue',
+                      color: 'black',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    {column.render('Header')}
+                  </th>
+                ))}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row, i) => {
+              prepareRow(row);
+              return (
+                <tr key={i} {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    return (
+                      <td
+                        key={i}
+                        {...cell.getCellProps()}
+                        style={{
+                          padding: '10px',
+                          border: 'solid 1px gray',
+                          background: 'papayawhip',
+                        }}
+                      >
+                        {cell.render('Cell')}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
