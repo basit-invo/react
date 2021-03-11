@@ -1,7 +1,11 @@
 .App {
   text-align: center;
+  background: #e2e8f0;
 }
-
+button[disabled] {
+  background-color: gray;
+  opacity: 0.5;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

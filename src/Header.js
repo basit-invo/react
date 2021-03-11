@@ -19,7 +19,10 @@ function Header() {
         </div>
         <div className="w-1/4 float-left mt-5">
           <Link to="/login" className="mr-5">
-            Login / Register
+            Login
+          </Link>
+          <Link to="/register" className="mr-5">
+            Register
           </Link>
         </div>
       </div>
