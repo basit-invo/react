@@ -16,10 +16,8 @@ function App() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(true);
-        console.log('Set User True');
       } else {
         setUser(false);
-        console.log('Set User false');
       }
     });
   }

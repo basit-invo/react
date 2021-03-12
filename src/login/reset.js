@@ -1,38 +1,29 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
+import { useLocation } from 'react-router-dom';
 
-// eslint-disable-next-line react/prop-types
-function Reset({ user }) {
+function Reset() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const { search } = useLocation();
+  const code = new URLSearchParams(search).get('oobCode');
+
   const submitForm = (e) => {
     e.preventDefault();
-    if (user == true) {
-      if (password == confirmPassword) {
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(password)
-          .then(() => {
-            console.log('success');
-            window.location.href = '/';
-          })
-          .catch((err) => {
-            switch (err.code) {
-              case 'auth/invalid-email':
-              case 'auth/user-disabled':
-              case 'auth/user-not-found':
-                alert(err.message);
-                break;
-              case 'auth/wrong-password':
-                alert(err.message);
-                break;
-            }
-          });
-      } else {
-        alert('Please match both fields');
-      }
+    if (password == confirmPassword) {
+      firebase
+        .auth()
+        .confirmPasswordReset(code, password)
+        .then(() => {
+          alert('Password reset successfully!! Go to login page');
+          setPassword('');
+          setConfirmPassword('');
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
     } else {
-      alert('Please login for reset password');
+      alert('Please match both fields');
     }
   };
   return (

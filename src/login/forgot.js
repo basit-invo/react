@@ -9,8 +9,8 @@ const Forgot = () => {
       .auth()
       .sendPasswordResetEmail(email)
       .then(() => {
-        alert('Please check you email for password reset');
         setEmail('');
+        alert('Please check you email for password reset');
       })
       .catch((err) => {
         switch (err.code) {

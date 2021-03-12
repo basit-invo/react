@@ -21,9 +21,6 @@ function Header({ user, logout }) {
         <div className="w-1/4 float-left mt-5">
           {user == true && (
             <span>
-              {/* <Link to="/reset" className="mr-5">
-                Change Password
-              </Link> */}
               <button type="button" onClick={logout}>
                 Logout
               </button>
