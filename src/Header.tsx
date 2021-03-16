@@ -3,7 +3,7 @@ import React from 'react';
 import Logo from './logo.svg';
 import { Link } from 'react-router-dom';
 
-function Header({ user, logout }) {
+function Header({ user, logout }: { user: Boolean; logout: any }) {
   return (
     <div className="bg-black w-full text-white">
       <div className="max-w-screen-xl m-auto overflow-hidden block">

@@ -42,8 +42,8 @@ const IndexPage = () => {
       );
     }
   };
-  const imageUpload = (e) => {
-    if (e.target.files[0]) {
+  const imageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files !== null) {
       const image = e.target.files[0];
       const uploadTask = storage.ref(`images/${image.name}`).put(image);
       uploadTask.on(
@@ -69,7 +69,7 @@ const IndexPage = () => {
       );
     }
   };
-  const submitForm = (data) => {
+  const submitForm = (data: any) => {
     console.log(data);
     firebase
       .auth()

@@ -3,7 +3,7 @@ import firebase from 'firebase';
 
 const Forgot = () => {
   const [email, setEmail] = useState('');
-  const submitForm = (e) => {
+  const submitForm = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     firebase
       .auth()

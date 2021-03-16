@@ -3,12 +3,12 @@ import firebase from 'firebase';
 import { useLocation } from 'react-router-dom';
 
 function Reset() {
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const { search } = useLocation();
-  const code = new URLSearchParams(search).get('oobCode');
+  const code = new URLSearchParams(search).get('oobCode') || '';
 
-  const submitForm = (e) => {
+  const submitForm = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password == confirmPassword) {
       firebase

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const IndexPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const submitForm = (e) => {
+  const submitForm = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     firebase
       .auth()

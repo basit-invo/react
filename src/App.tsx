@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
-import Home from './Home.js';
+import Home from './Home';
 import firebase from 'firebase';
 import './App.css';
 import useWindowsWidth from './custom-hooks';
-import Register from './register/';
-import Login from './login/';
+import Register from './register';
+import Login from './login';
 import Forgot from './login/forgot';
 import Reset from './login/reset';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState<Boolean>(false);
   function handleAuth() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
+    firebase.auth().onAuthStateChanged((userr) => {
+      if (userr) {
         setUser(true);
       } else {
         setUser(false);
@@ -22,10 +22,16 @@ function App() {
     });
   }
 
-  function logout() {
+  // function logout() {
+  //   firebase.auth().signOut();
+  //   window.location.href = '/login';
+  // }
+
+  const logout = (e: React.ChangeEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
     firebase.auth().signOut();
     window.location.href = '/login';
-  }
+  };
 
   useEffect(() => {
     handleAuth();
@@ -51,7 +57,7 @@ function App() {
           <Route
             path="/reset"
             component={() => {
-              return <Reset user={user} />;
+              return <Reset />;
             }}
             exact
           ></Route>

@@ -3,9 +3,8 @@ import Table from './Table';
 import Selects from './Select';
 import ProductListing from './productListing';
 
-function home({ user }) {
-  const handleClick = (e) => {
-    e.preventDefault();
+function home({ user }: any) {
+  const handleClick = () => {
     console.log(user);
     if (user == false) {
       window.location.href = '/login';
